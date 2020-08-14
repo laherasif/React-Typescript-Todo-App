@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Addtodo from './componentes/Register/Addtodo';
+import Home from './componentes/Home/Home'
+import Header from './componentes/Home/Header'
+import { Provider } from './componentes/UseContext/Context';
+import { BrowserRouter as Router , Switch , Route } from "react-router-dom";
+import Edittodo from './componentes/Register/Edit';
+import Footer from './componentes/Home/Footer';
 
-function App() {
+
+
+const App: React.FC = () => {
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider>
+    <React.Fragment>
+      <Router> 
+        <Header/>
+        <Switch>
+        <Route exact path="/" component={Home}/>
+       <Route  path="/new"  component={Addtodo}/>
+       <Route  path="/edit/:id"  component={Edittodo}/>
+       </Switch>
+       <Footer/>
+      </Router>
+
+    </React.Fragment>
+    </Provider>
   );
 }
 
